@@ -42,10 +42,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Custom scrollbar */
-        #chatMessages::-webkit-scrollbar { width: 6px; }
-        #chatMessages::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
@@ -93,19 +89,19 @@
                 <!-- Welcome/Home Dashboard -->
                 <div id="homeView" class="fade-in space-y-6">
                     <div class="py-6">
-                        <h2 class="text-4xl font-bold mb-2">Hello, Engineer! 🚀</h2>
-                        <p class="text-slate-400 text-lg">Choose a mission or ask me a question about Micro:bits below.</p>
+                        <h2 class="text-4xl font-bold mb-2 text-white">Hello, Engineer! 🚀</h2>
+                        <p class="text-slate-400 text-lg">Choose a mission on the left to begin. Use these hints to solve the puzzles in your workbook.</p>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="glass-panel p-5 rounded-2xl border-cyan-500/10">
-                            <i class="fa-solid fa-lightbulb text-cyan-400 mb-3 block text-xl"></i>
-                            <h4 class="font-bold">Need a hint?</h4>
-                            <p class="text-sm text-slate-400">Select a mission on the left to see common pitfalls and logic tips.</p>
+                        <div class="glass-panel p-6 rounded-2xl border-cyan-500/10">
+                            <i class="fa-solid fa-lightbulb text-cyan-400 mb-4 block text-2xl"></i>
+                            <h4 class="font-bold text-lg mb-2">Need a hint?</h4>
+                            <p class="text-sm text-slate-400">Select a mission to see the underlying logic, Python comparisons, and where to find your blocks.</p>
                         </div>
-                        <div class="glass-panel p-5 rounded-2xl border-purple-500/10">
-                            <i class="fa-solid fa-comments text-purple-400 mb-3 block text-xl"></i>
-                            <h4 class="font-bold">Chat with me!</h4>
-                            <p class="text-sm text-slate-400">Type any question in the chat box at the bottom to get guidance.</p>
+                        <div class="glass-panel p-6 rounded-2xl border-purple-500/10">
+                            <i class="fa-solid fa-brain text-purple-400 mb-4 block text-2xl"></i>
+                            <h4 class="font-bold text-lg mb-2">3-B4-ME</h4>
+                            <p class="text-sm text-slate-400">Before asking your teacher, check the: 1. Instructions, 2. Blocks, 3. Buddy, and then this Gem!</p>
                         </div>
                     </div>
                 </div>
@@ -115,74 +111,86 @@
                     <div class="flex items-center gap-4">
                         <div id="missionIcon" class="w-14 h-14 bg-cyan-950 rounded-2xl flex items-center justify-center text-2xl text-cyan-400 border border-cyan-800"></div>
                         <div>
-                            <h2 id="missionTitle" class="text-2xl font-bold"></h2>
-                            <p id="missionSubtitle" class="text-xs text-slate-400 uppercase tracking-widest"></p>
+                            <h2 id="missionTitle" class="text-3xl font-bold text-white"></h2>
+                            <p id="missionSubtitle" class="text-xs text-slate-400 uppercase tracking-widest font-bold"></p>
                         </div>
                     </div>
-                    <div class="space-y-6">
+                    
+                    <div class="grid grid-cols-1 gap-6">
                         <div class="glass-panel p-6 rounded-2xl border-cyan-900/30">
-                            <h3 class="text-cyan-400 font-bold uppercase text-xs tracking-tighter mb-2">The Logic Puzzle</h3>
-                            <p id="logicHint" class="text-slate-300"></p>
+                            <h3 class="text-cyan-400 font-bold uppercase text-xs tracking-widest mb-3">The Logic Puzzle</h3>
+                            <p id="logicHint" class="text-slate-200 text-lg leading-relaxed"></p>
                         </div>
-                        <div class="python-hint p-4 rounded-r-lg">
-                            <h3 class="text-sky-300 font-bold text-[10px] uppercase mb-1">Python Comparison</h3>
-                            <p id="pythonCompare" class="text-sm italic text-slate-300"></p>
+
+                        <div class="python-hint p-5 rounded-r-lg">
+                            <h3 class="text-sky-300 font-bold text-xs uppercase mb-2">Python Comparison</h3>
+                            <p id="pythonCompare" class="text-sm italic text-slate-300 font-mono"></p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800">
-                                <h4 class="text-white font-bold text-sm mb-2">Key Blocks</h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Key Block Categories</h4>
                                 <div id="blocksList" class="flex flex-wrap gap-2"></div>
                             </div>
-                            <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800">
-                                <h4 class="text-white font-bold text-sm mb-2">Pro Tips</h4>
-                                <ul id="proTips" class="text-xs text-slate-400 space-y-2"></ul>
+                            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
+                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Pro Tips</h4>
+                                <ul id="proTips" class="text-sm text-slate-400 space-y-3"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Bottom: Chat Interface -->
-            <div class="p-4 bg-slate-950/80 border-t border-cyan-900/30 backdrop-blur-md">
-                <div id="chatMessages" class="max-h-32 overflow-y-auto mb-4 space-y-2 text-sm px-2">
-                    <!-- Messages will appear here -->
-                    <div class="text-slate-500 italic">Chat with the Mission Gem...</div>
-                </div>
-                <div class="flex gap-2">
-                    <input type="text" id="chatInput" placeholder="Ask a question (e.g. How do I use a variable?)" 
-                           class="flex-grow bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 transition-all">
-                    <button id="sendBtn" class="bg-cyan-600 hover:bg-cyan-500 text-white px-5 py-3 rounded-xl transition-all flex items-center justify-center">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </div>
-                <div id="loadingIndicator" class="hidden text-[10px] text-cyan-500 mt-2 animate-pulse">Gem is thinking...</div>
             </div>
         </div>
     </div>
 
     <script>
-        const apiKey = "";
-        const systemPrompt = `You are the 'Mission Support Gem', a helpful Year 7 Computer Science teaching assistant for BBC Micro:bit lessons. 
-        RULES:
-        1. Never give the exact answer or the final block configuration.
-        2. Always use Socratic questioning (e.g., 'What block might you use to store a number?').
-        3. Reference Python concepts if relevant (e.g., 'This is just like a loop in Python').
-        4. Be encouraging, tech-savvy, and concise (max 3 sentences per response).
-        5. If a student asks for the answer, politely explain that finding the logic is the real mission.
-        6. Use formatting like **bold** for key block categories.`;
-
         const missions = {
-            1: { title: "Animated Loops", subtitle: "Iteration", icon: "fa-rotate", logic: "To fill a grid, you need one loop for X (rows) and one for Y (columns). One loop sits inside the other.", python: "for x in range(5): for y in range(5):", tips: ["Check your pause times!", "Remember to clear screen."], blocks: ["Loops -> For", "LED -> Plot"] },
-            2: { title: "Logic Gates", subtitle: "Selection", icon: "fa-microchip", logic: "AND needs both sides to be true. OR only needs one side. Look for the hexagonal blocks in Logic.", python: "if condition1 and condition2:", tips: ["Try A+B pressed.", "Combine sensors with logic."], blocks: ["Logic -> And/Or", "Logic -> If"] },
-            3: { title: "Calorie Burner", subtitle: "Variables", icon: "fa-calculator", logic: "Create a 'steps' variable. Every shake, change it by 1. Then use math to multiply steps by 0.04.", python: "calories = steps * 0.04", tips: ["Initialize to 0.", "Show number block is key."], blocks: ["Variables -> Change", "Math -> Multiply"] },
-            4: { title: "Security Alarm", subtitle: "States", icon: "fa-shield-halved", logic: "Use a boolean variable called 'Armed'. Only check light levels if 'Armed' is set to true.", python: "if armed == True:", tips: ["Use a forever loop.", "Passcode = counter variable."], blocks: ["Variables -> Boolean", "Logic -> Equals"] },
-            5: { title: "Multiplayer Radio", subtitle: "Networking", icon: "fa-wifi", logic: "Set a group number first. Use 'Send Number' and the 'On Received Number' event to talk.", python: "network.send(message)", tips: ["Pick a unique group ID.", "Events only run when triggered."], blocks: ["Radio -> Group", "Radio -> Send"] }
+            1: { 
+                title: "Animated Loops", 
+                subtitle: "Iteration & Sequences", 
+                icon: "fa-rotate", 
+                logic: "To fill a grid systematically, you need one loop for X (columns) and one loop for Y (rows). One loop sits inside the other—this is called nesting.", 
+                python: "for x in range(5):\n  for y in range(5):\n    plot(x, y)", 
+                tips: ["Check your pause times (100ms is usually good)!", "If the screen stays lit, remember to add a 'clear screen' block at the end.", "Make sure your variables X and Y are in the correct plot holes."], 
+                blocks: ["Loops -> For", "LED -> Plot", "Basic -> Pause"] 
+            },
+            2: { 
+                title: "Logic Gates", 
+                subtitle: "Selection (If/And/Or)", 
+                icon: "fa-microchip", 
+                logic: "AND logic requires BOTH conditions to be true. OR logic only requires ONE. These 'hexagonal' blocks allow you to create complex rules.", 
+                python: "if button_a and button_b:\n  display.show(Image.HAPPY)", 
+                tips: ["Try using the 'A+B pressed' block for a simple secret.", "Combine sensors like light or shake with logic gates.", "The 'Not' block flips True to False!"], 
+                blocks: ["Logic -> And / Or", "Logic -> If / Else", "Input -> On Button"] 
+            },
+            3: { 
+                title: "Calorie Burner", 
+                subtitle: "Variables & Arithmetic", 
+                icon: "fa-calculator", 
+                logic: "Variables store data. You need to create a 'steps' variable that increases by 1 on every shake. Then, multiply that total by 0.04 to calculate calories.", 
+                python: "steps = steps + 1\ncalories = steps * 0.04", 
+                tips: ["Initialize your variable to 0 in 'On Start'.", "Use 'Show Number' to see your variable on the screen.", "Math blocks can be nested inside each other."], 
+                blocks: ["Variables -> Set / Change", "Math -> Multiplication (*)", "Basic -> Show Number"] 
+            },
+            4: { 
+                title: "Security Alarm", 
+                subtitle: "States & Booleans", 
+                icon: "fa-shield-halved", 
+                logic: "Use a boolean variable called 'Armed'. If Armed is True AND the light level goes up, the alarm should trigger. If Armed is False, nothing should happen.", 
+                python: "if armed == True and light > 50:\n  siren()", 
+                tips: ["Use a 'Forever' loop to keep checking the light level.", "Toggling the 'Armed' state is like a light switch.", "The passcode uses a second counter variable."], 
+                blocks: ["Variables -> Boolean (True/False)", "Logic -> Comparison (=)", "Input -> Light Level"] 
+            },
+            5: { 
+                title: "Multiplayer Radio", 
+                subtitle: "Networking Protocols", 
+                icon: "fa-wifi", 
+                logic: "Radio groups act like channels. Set everyone to the same group to communicate. One micro:bit 'Sends', and the other must have an 'On Received' event ready.", 
+                python: "radio.on()\nradio.config(group=7)\nradio.send('1')", 
+                tips: ["Pick a group number between 0 and 255.", "Use 'Received Number' to trigger an icon or sound.", "Make sure both devices have the exact same group number."], 
+                blocks: ["Radio -> Set Group", "Radio -> Send Number", "Radio -> On Received"] 
+            }
         };
-
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const sendBtn = document.getElementById('sendBtn');
-        const loadingIndicator = document.getElementById('loadingIndicator');
 
         function showHome() {
             document.getElementById('homeView').classList.remove('hidden');
@@ -194,53 +202,4 @@
             document.getElementById('homeView').classList.add('hidden');
             document.getElementById('missionView').classList.remove('hidden');
             document.getElementById('missionTitle').innerText = m.title;
-            document.getElementById('missionSubtitle').innerText = m.subtitle;
-            document.getElementById('logicHint').innerText = m.logic;
-            document.getElementById('pythonCompare').innerText = m.python;
-            document.getElementById('missionIcon').innerHTML = `<i class="fa-solid ${m.icon}"></i>`;
-            document.getElementById('proTips').innerHTML = m.tips.map(t => `<li>• ${t}</li>`).join('');
-            document.getElementById('blocksList').innerHTML = m.blocks.map(b => `<span class="bg-cyan-900/40 px-2 py-1 rounded text-[10px] border border-cyan-800">${b}</span>`).join('');
-        }
-
-        async function sendMessage() {
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            addMessage('user', text);
-            chatInput.value = '';
-            loadingIndicator.classList.remove('hidden');
-
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text }] }],
-                        systemInstruction: { parts: [{ text: systemPrompt }] }
-                    })
-                });
-                
-                const data = await response.json();
-                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting to the mission core. Try again!";
-                addMessage('gem', reply);
-            } catch (error) {
-                addMessage('gem', "Mission error: Check your connection.");
-            } finally {
-                loadingIndicator.classList.add('hidden');
-            }
-        }
-
-        function addMessage(role, text) {
-            if (chatMessages.innerHTML.includes('Chat with the Mission')) chatMessages.innerHTML = '';
-            const div = document.createElement('div');
-            div.className = `p-2 rounded-lg ${role === 'user' ? 'bg-slate-800 ml-8' : 'bg-cyan-900/30 mr-8 text-cyan-200'}`;
-            div.innerHTML = `<strong class="text-[10px] uppercase block mb-1 opacity-50">${role === 'user' ? 'You' : 'Mission Gem'}</strong>${text}`;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        sendBtn.onclick = sendMessage;
-        chatInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
-    </script>
-</body>
-</html>
+            document.getElementById('
