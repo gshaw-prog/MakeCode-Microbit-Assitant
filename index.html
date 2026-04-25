@@ -35,110 +35,143 @@
         }
 
         .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <div id="app" class="w-full max-w-5xl glass-panel rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-[85vh]">
+    <div id="app" class="w-full max-w-6xl glass-panel rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row h-[90vh]">
         
-        <!-- Left Sidebar: Missions & Navigation -->
-        <div class="w-full md:w-80 border-r border-cyan-900/50 flex flex-col bg-slate-950/50">
+        <!-- Left Sidebar -->
+        <div class="w-full md:w-80 border-r border-cyan-900/50 flex flex-col bg-slate-950/80">
             <div class="p-6 border-b border-cyan-900/50">
                 <h1 class="text-2xl font-bold text-cyan-400">Mission Gem <i class="fa-solid fa-gem ml-1"></i></h1>
-                <p class="text-xs text-slate-500 uppercase tracking-widest mt-1">CS Assistant</p>
+                <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-bold">Engineering Support</p>
             </div>
             
-            <div class="flex-grow overflow-y-auto p-4 space-y-2">
-                <button onclick="showHome()" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all flex items-center gap-3">
-                    <i class="fa-solid fa-house text-slate-400"></i> Dashboard
+            <nav class="flex-grow overflow-y-auto p-4 space-y-2">
+                <button onclick="showHome()" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all flex items-center gap-3 text-slate-300">
+                    <i class="fa-solid fa-house"></i> <span>Dashboard</span>
                 </button>
-                <div class="text-[10px] text-slate-600 font-bold uppercase tracking-wider px-3 mt-4">Select Mission</div>
-                <button onclick="showMission(1)" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900">
-                    <span class="text-cyan-500 font-mono">01</span> Animated Loops
+                
+                <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest px-3 mt-6 mb-2">Select a Mission</div>
+                
+                <button onclick="showMission(1)" class="mission-nav w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900/50">
+                    <span class="w-6 h-6 flex items-center justify-center rounded bg-cyan-900/40 text-cyan-400 text-xs font-mono">01</span>
+                    <span>Animated Loops</span>
                 </button>
-                <button onclick="showMission(2)" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900">
-                    <span class="text-cyan-500 font-mono">02</span> Logic Gates
+                
+                <button onclick="showMission(2)" class="mission-nav w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900/50">
+                    <span class="w-6 h-6 flex items-center justify-center rounded bg-cyan-900/40 text-cyan-400 text-xs font-mono">02</span>
+                    <span>Logic Gates</span>
                 </button>
-                <button onclick="showMission(3)" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900">
-                    <span class="text-cyan-500 font-mono">03</span> Calorie Burner
+                
+                <button onclick="showMission(3)" class="mission-nav w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900/50">
+                    <span class="w-6 h-6 flex items-center justify-center rounded bg-cyan-900/40 text-cyan-400 text-xs font-mono">03</span>
+                    <span>Calorie Burner</span>
                 </button>
-                <button onclick="showMission(4)" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900">
-                    <span class="text-cyan-500 font-mono">04</span> Security Alarm
+                
+                <button onclick="showMission(4)" class="mission-nav w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900/50">
+                    <span class="w-6 h-6 flex items-center justify-center rounded bg-cyan-900/40 text-cyan-400 text-xs font-mono">04</span>
+                    <span>Security Alarm</span>
                 </button>
-                <button onclick="showMission(5)" class="w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900">
-                    <span class="text-cyan-500 font-mono">05</span> Radio Multiplayer
+                
+                <button onclick="showMission(5)" class="mission-nav w-full text-left p-3 rounded-xl hover:bg-cyan-950/30 transition-all text-sm flex items-center gap-3 border border-transparent hover:border-cyan-900/50">
+                    <span class="w-6 h-6 flex items-center justify-center rounded bg-cyan-900/40 text-cyan-400 text-xs font-mono">05</span>
+                    <span>Radio Multiplayer</span>
                 </button>
-            </div>
+            </nav>
             
-            <div class="p-6 bg-slate-900/50 text-[10px] text-slate-500 text-center uppercase tracking-widest">
-                3-B4-ME Protocol
+            <div class="p-6 bg-slate-900/30 text-[10px] text-slate-600 text-center uppercase tracking-widest border-t border-cyan-900/20">
+                3-B4-ME Protocol Active
             </div>
         </div>
 
-        <!-- Center: Dynamic Content Area -->
-        <div class="flex-grow flex flex-col relative bg-slate-950/20 overflow-hidden">
-            
-            <div id="mainDisplay" class="flex-grow overflow-y-auto p-8">
-                <!-- Welcome/Home Dashboard -->
-                <div id="homeView" class="fade-in space-y-6">
-                    <div class="py-6">
-                        <h2 class="text-4xl font-bold mb-2 text-white">Hello, Engineer! 🚀</h2>
-                        <p class="text-slate-400 text-lg">Choose a mission on the left to begin. Use these hints to solve the puzzles in your workbook.</p>
+        <!-- Main Content Area -->
+        <div class="flex-grow flex flex-col bg-slate-950/30 overflow-hidden">
+            <div id="content" class="flex-grow overflow-y-auto p-8 md:p-12">
+                
+                <!-- Dashboard View -->
+                <div id="homeView" class="fade-in space-y-8">
+                    <div class="max-w-2xl">
+                        <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-white to-slate-500 bg-clip-text text-transparent">Hello, Engineer! 🚀</h2>
+                        <p class="text-slate-400 text-xl leading-relaxed">I am your support system for today's mission. I provide logic hints and Python comparisons to help you build your own solutions.</p>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="glass-panel p-6 rounded-2xl border-cyan-500/10">
-                            <i class="fa-solid fa-lightbulb text-cyan-400 mb-4 block text-2xl"></i>
-                            <h4 class="font-bold text-lg mb-2">Need a hint?</h4>
-                            <p class="text-sm text-slate-400">Select a mission to see the underlying logic, Python comparisons, and where to find your blocks.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                        <div class="glass-panel p-8 rounded-3xl border-cyan-500/10">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-950 flex items-center justify-center mb-6 border border-cyan-800">
+                                <i class="fa-solid fa-lightbulb text-cyan-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Logic Scaffolding</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Don't know where to start? Select a mission to see how the logic flows before you touch the blocks.</p>
                         </div>
-                        <div class="glass-panel p-6 rounded-2xl border-purple-500/10">
-                            <i class="fa-solid fa-brain text-purple-400 mb-4 block text-2xl"></i>
-                            <h4 class="font-bold text-lg mb-2">3-B4-ME</h4>
-                            <p class="text-sm text-slate-400">Before asking your teacher, check the: 1. Instructions, 2. Blocks, 3. Buddy, and then this Gem!</p>
+                        
+                        <div class="glass-panel p-8 rounded-3xl border-purple-500/10">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-950 flex items-center justify-center mb-6 border border-purple-800">
+                                <i class="fa-solid fa-brain text-purple-400 text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Bridge to Python</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Moving from text to blocks? I'll show you how your Python skills translate into Micro:bit logic.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mission View -->
-                <div id="missionView" class="hidden fade-in space-y-8">
-                    <div class="flex items-center gap-4">
-                        <div id="missionIcon" class="w-14 h-14 bg-cyan-950 rounded-2xl flex items-center justify-center text-2xl text-cyan-400 border border-cyan-800"></div>
+                <div id="missionView" class="hidden fade-in space-y-10">
+                    <div class="flex flex-col md:flex-row md:items-center gap-6">
+                        <div id="missionIcon" class="w-20 h-20 bg-cyan-950 rounded-3xl flex items-center justify-center text-4xl text-cyan-400 border border-cyan-800 shrink-0"></div>
                         <div>
-                            <h2 id="missionTitle" class="text-3xl font-bold text-white"></h2>
-                            <p id="missionSubtitle" class="text-xs text-slate-400 uppercase tracking-widest font-bold"></p>
+                            <p id="missionSubtitle" class="text-xs text-cyan-500 uppercase tracking-[0.3em] font-bold mb-1"></p>
+                            <h2 id="missionTitle" class="text-4xl font-bold text-white"></h2>
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 gap-6">
-                        <div class="glass-panel p-6 rounded-2xl border-cyan-900/30">
-                            <h3 class="text-cyan-400 font-bold uppercase text-xs tracking-widest mb-3">The Logic Puzzle</h3>
-                            <p id="logicHint" class="text-slate-200 text-lg leading-relaxed"></p>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Main Logic -->
+                        <div class="lg:col-span-2 space-y-8">
+                            <div class="glass-panel p-8 rounded-3xl border-cyan-900/30">
+                                <h3 class="text-cyan-400 font-bold uppercase text-[10px] tracking-widest mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-puzzle-piece"></i> The Logic Puzzle
+                                </h3>
+                                <p id="logicHint" class="text-slate-200 text-xl leading-relaxed"></p>
+                            </div>
+
+                            <div class="python-hint p-6 rounded-2xl">
+                                <h3 class="text-sky-300 font-bold text-[10px] uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <i class="fa-brands fa-python"></i> Python Reference
+                                </h3>
+                                <pre id="pythonCompare" class="text-sky-100/80 text-sm overflow-x-auto whitespace-pre-wrap"></pre>
+                            </div>
                         </div>
 
-                        <div class="python-hint p-5 rounded-r-lg">
-                            <h3 class="text-sky-300 font-bold text-xs uppercase mb-2">Python Comparison</h3>
-                            <p id="pythonCompare" class="text-sm italic text-slate-300 font-mono"></p>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
-                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Key Block Categories</h4>
+                        <!-- Sidebar Info -->
+                        <div class="space-y-6">
+                            <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800/50">
+                                <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-4">Key Categories</h4>
                                 <div id="blocksList" class="flex flex-wrap gap-2"></div>
                             </div>
-                            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800">
-                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-wider">Pro Tips</h4>
-                                <ul id="proTips" class="text-sm text-slate-400 space-y-3"></ul>
+                            
+                            <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800/50">
+                                <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-4">Pro Tips</h4>
+                                <ul id="proTips" class="text-sm text-slate-400 space-y-4"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -147,47 +180,67 @@
         const missions = {
             1: { 
                 title: "Animated Loops", 
-                subtitle: "Iteration & Sequences", 
+                subtitle: "Iteration & Sequence", 
                 icon: "fa-rotate", 
-                logic: "To fill a grid systematically, you need one loop for X (columns) and one loop for Y (rows). One loop sits inside the other—this is called nesting.", 
-                python: "for x in range(5):\n  for y in range(5):\n    plot(x, y)", 
-                tips: ["Check your pause times (100ms is usually good)!", "If the screen stays lit, remember to add a 'clear screen' block at the end.", "Make sure your variables X and Y are in the correct plot holes."], 
+                logic: "To make a grid fill (the Silver spiral), you need a loop inside a loop. The first loop controls the rows, and the second loop controls the columns. Every time the row changes, the column loop runs again!", 
+                python: "# Nested loop logic:\nfor y in range(5):\n    for x in range(5):\n        led.plot(x, y)\n        time.sleep(0.1)", 
+                tips: [
+                    "Check your <strong>pause</strong> block! Without it, the loop finishes before you can see it happen.",
+                    "If you use 'index' as a variable name, change it to 'x' or 'y' so it makes more sense.",
+                    "The spiral starts at (0,0) which is the top left."
+                ], 
                 blocks: ["Loops -> For", "LED -> Plot", "Basic -> Pause"] 
             },
             2: { 
                 title: "Logic Gates", 
-                subtitle: "Selection (If/And/Or)", 
+                subtitle: "Selection (Logic)", 
                 icon: "fa-microchip", 
-                logic: "AND logic requires BOTH conditions to be true. OR logic only requires ONE. These 'hexagonal' blocks allow you to create complex rules.", 
-                python: "if button_a and button_b:\n  display.show(Image.HAPPY)", 
-                tips: ["Try using the 'A+B pressed' block for a simple secret.", "Combine sensors like light or shake with logic gates.", "The 'Not' block flips True to False!"], 
-                blocks: ["Logic -> And / Or", "Logic -> If / Else", "Input -> On Button"] 
+                logic: "Logic blocks (AND / OR) let you check multiple things at once. 'AND' means both sides must be true for the code to run. Use these inside an 'If' block.", 
+                python: "# Boolean Logic:\nif button_a.is_pressed() and button_b.is_pressed():\n    display.show(Image.HAPPY)", 
+                tips: [
+                    "A+B is a special event, but you can also use 'If Button A pressed AND Button B pressed'.",
+                    "The 'OR' block is great for randomizers (e.g. Shake OR Button A).",
+                    "Logic blocks are hexagonal (6-sided)!"
+                ], 
+                blocks: ["Logic -> And / Or", "Logic -> If / Else", "Input -> Button Pressed"] 
             },
             3: { 
                 title: "Calorie Burner", 
-                subtitle: "Variables & Arithmetic", 
+                subtitle: "Variables & Math", 
                 icon: "fa-calculator", 
-                logic: "Variables store data. You need to create a 'steps' variable that increases by 1 on every shake. Then, multiply that total by 0.04 to calculate calories.", 
-                python: "steps = steps + 1\ncalories = steps * 0.04", 
-                tips: ["Initialize your variable to 0 in 'On Start'.", "Use 'Show Number' to see your variable on the screen.", "Math blocks can be nested inside each other."], 
-                blocks: ["Variables -> Set / Change", "Math -> Multiplication (*)", "Basic -> Show Number"] 
+                logic: "Variables are like boxes. You need a box to hold the number of steps. Every time you shake, you add 1. To get calories, you multiply that box by 0.04.", 
+                python: "# Variable Math:\nsteps = 0\n# On shake:\nsteps += 1\ncalories = steps * 0.04", 
+                tips: [
+                    "Don't forget to 'Set' your variable to 0 when the program starts.",
+                    "You need two variables: 'steps' and 'calories'.",
+                    "Make sure you show the number on the LEDs so you can read it!"
+                ], 
+                blocks: ["Variables -> Change", "Math -> Multiply (x)", "Basic -> Show Number"] 
             },
             4: { 
                 title: "Security Alarm", 
-                subtitle: "States & Booleans", 
+                subtitle: "State Management", 
                 icon: "fa-shield-halved", 
-                logic: "Use a boolean variable called 'Armed'. If Armed is True AND the light level goes up, the alarm should trigger. If Armed is False, nothing should happen.", 
-                python: "if armed == True and light > 50:\n  siren()", 
-                tips: ["Use a 'Forever' loop to keep checking the light level.", "Toggling the 'Armed' state is like a light switch.", "The passcode uses a second counter variable."], 
-                blocks: ["Variables -> Boolean (True/False)", "Logic -> Comparison (=)", "Input -> Light Level"] 
+                logic: "This uses 'State'. You need a Boolean variable (True or False) called 'Armed'. If the alarm is ARMED and it gets too light, the siren should trigger.", 
+                python: "# State tracking:\narmed = False\nif armed == True and light_level > 50:\n    music.play(music.SIREN)", 
+                tips: [
+                    "Use the 'On Logo Touched' to flip your 'Armed' switch.",
+                    "The alarm should only sound if BOTH conditions are true at once.",
+                    "Add a second variable for the 'Passcode' count."
+                ], 
+                blocks: ["Variables -> Boolean", "Logic -> Comparison (=)", "Input -> Light Level"] 
             },
             5: { 
                 title: "Multiplayer Radio", 
-                subtitle: "Networking Protocols", 
+                subtitle: "I/O Networking", 
                 icon: "fa-wifi", 
-                logic: "Radio groups act like channels. Set everyone to the same group to communicate. One micro:bit 'Sends', and the other must have an 'On Received' event ready.", 
-                python: "radio.on()\nradio.config(group=7)\nradio.send('1')", 
-                tips: ["Pick a group number between 0 and 255.", "Use 'Received Number' to trigger an icon or sound.", "Make sure both devices have the exact same group number."], 
+                logic: "Radio waves allow two micro:bits to share data. You must set a 'Group' number (like a walkie-talkie channel) so you are only listening to your partner.", 
+                python: "# Radio Networking:\nradio.on()\nradio.config(group=7)\nradio.send('message')", 
+                tips: [
+                    "Pick a group number between 1 and 255.",
+                    "The 'On Radio Received' block is an event—it only runs when a packet arrives.",
+                    "Try sending the 'Running Time' to calculate distance or reaction speed."
+                ], 
                 blocks: ["Radio -> Set Group", "Radio -> Send Number", "Radio -> On Received"] 
             }
         };
@@ -202,4 +255,30 @@
             document.getElementById('homeView').classList.add('hidden');
             document.getElementById('missionView').classList.remove('hidden');
             document.getElementById('missionTitle').innerText = m.title;
-            document.getElementById('
+            document.getElementById('missionSubtitle').innerText = m.subtitle;
+            document.getElementById('logicHint').innerText = m.logic;
+            document.getElementById('pythonCompare').innerText = m.python;
+            document.getElementById('missionIcon').innerHTML = `<i class="fa-solid ${m.icon}"></i>`;
+            
+            // Render Tips
+            const proTips = document.getElementById('proTips');
+            proTips.innerHTML = m.tips.map(t => `<li class="flex gap-3"><i class="fa-solid fa-chevron-right text-cyan-500 mt-1 text-[10px]"></i><span>${t}</span></li>`).join('');
+            
+            // Render Categories
+            const blocksList = document.getElementById('blocksList');
+            blocksList.innerHTML = m.blocks.map(b => `<span class="bg-cyan-900/30 px-3 py-1.5 rounded-lg text-[10px] font-bold border border-cyan-800/50 text-cyan-200 uppercase tracking-wider">${b}</span>`).join('');
+
+            // Highlight active nav
+            document.querySelectorAll('.mission-nav').forEach((btn, idx) => {
+                if (idx + 1 === id) {
+                    btn.classList.add('bg-cyan-950/50', 'border-cyan-700/50');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('bg-cyan-950/50', 'border-cyan-700/50');
+                    btn.classList.add('border-transparent');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
